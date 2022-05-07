@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>observatory.io</title>
+
+  <link rel="stylesheet" href="css/maicons.css">
+
+  <link rel="stylesheet" href="css/bootstrap.css">
+
+  <link rel="stylesheet" href="vendor/animate/animate.css">
+
+  <link rel="stylesheet" href="css/theme.css">
+
+</head>
+<body>
+
+  <!-- Back to top button -->
+  <div class="back-to-top"></div>
+
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-fark bg-white sticky" data-offset="500">
+      <div class="container">
+        <a href="#" class="navbar-brand">observatory<span class="text-primary">.io</span></a>
+
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="navbar-collapse collapse" id="navbarContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="index.html"><div class="fab"><span class="mai-home navbar-icons"></span></div></a>
+            </li>
+            <form class="form-inline home-search">
+				      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+				      <button class="btn btn-primary" type="submit"><div class="fab"><span class="mai-search"></span></div></button>
+				    </form>
+            <li class="nav-item after-authenticated" style="display: none;">
+              <a href="#" onclick="logout()" class="nav-link"><div class="fab"><span class="mai-exit navbar-icons"></span></div></a>
+            </li>
+
+          </ul>
+        </div>
+
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="page-banner home-banner">
+        <div class="row align-items-center flex-wrap-reverse h-100">
+          <div class="col-md-6 py-5 wow fadeInLeft">
+            <div id="no-login">
+              <p class="text-lg text-primary">INTRODUCING OBSERVATORY</p>
+              <h1 class="mb-4">Track Emerging Narratives</h1>
+              <p class="text-lg text-grey mb-5">Observatory has been built to analyse trends and recommendations across social media platforms. Get started today!</p>
+            </div>
+
+            <div id="login-success" class="after-authenticated" style="display: none;">
+              <p class="text-lg text-primary">LOGIN SUCCESS</p>
+              <h1 class="mb-4">Welcome, <span id="given-name"></span></h1>
+              <p class="text-lg text-grey mb-5">ORCID: <span id="orcid-id"></span></p>
+            </div>
+          	
+            <a href="#" onclick="getORCID()" class="btn btn-primary btn-split" id="auth-button">Join Now! Authenticate your ORCID<div class="fab"><span class="mai-key"></span></div></a>
+          </div>
+          <div class="col-md-6 wow zoomIn">
+            <div class="img-fluid text-center">
+              <img src="img/home_img.png" alt="" style="width: 100%;">
+            </div>
+          </div>
+        </div>
+        <a href="#about" class="btn-scroll" data-role="smoothscroll"><span class="mai-arrow-down"></span></a>
+      </div>
+    </div>
+  </header>
+
+  <div class="page-section" id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="card-service wow fadeInUp">
+            <div class="header">
+              <div class="fab text-primary"><h1 class="mai-search"/></div>
+            </div>
+            <div class="body">
+              <h5 class="text-secondary">Query</h5>
+              <p>YouTube metadata based on various viewer attributes and interests.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="card-service wow fadeInUp">
+            <div class="header">
+              <div class="fab text-primary"><h1 class="mai-calendar"/></div>
+            </div>
+            <div class="body">
+              <h5 class="text-secondary">Schedule</h5>
+              <p>Scrapers to collect data regularly. This will help you identify
+              interesting trends.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="card-service wow fadeInUp">
+            <div class="header">
+              <div class="fab text-primary"><h1 class="mai-image"/></div>
+            </div>
+            <div class="body">
+              <h5 class="text-secondary">Visualize</h5>
+              <p>Useful metrics collected by scrapers and draw meaningful insights.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="card-service wow fadeInUp">
+            <div class="header">
+              <div class="fab text-primary"><h1 class="mai-download"/></div>
+            </div>
+            <div class="body">
+              <h5 class="text-secondary">Download</h5>
+              <p>Raw data scraped from YouTube in JSON or CSV to perform your own analyses.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div> <!-- .container -->
+  </div> <!-- .page-section -->
+
+  <footer class="page-footer">
+    <div class="container">
+    	<div class="row">
+    		<div class="col-lg-6">
+		      <div class="social-media-button">
+		            <a href="#"><span class="mai-logo-facebook-f"></span></a>
+		            <a href="#"><span class="mai-logo-twitter"></span></a>
+		            <a href="#"><span class="mai-logo-google-plus-g"></span></a>
+		            <a href="#"><span class="mai-logo-instagram"></span></a>
+		            <a href="#"><span class="mai-logo-youtube"></span></a>
+		      </div>
+		    </div>
+		    <div class="col-lg-6 text-right">
+      		<p class="text-white" style="margin-top: 5px">Copyright &copy; 2022.</p>
+      	</div>
+    </div>
+  </footer>
+
+<script src="js/jquery-3.5.1.min.js"></script>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+
+<script src="vendor/wow/wow.min.js"></script>
+
+<script src="js/theme.js"></script>
+
+<script src="https://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js"></script>
+
+<script src="js/orcid_login.js"></script>
+  
+</body>
+</html>

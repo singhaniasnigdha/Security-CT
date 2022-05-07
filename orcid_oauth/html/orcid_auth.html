@@ -1,0 +1,34 @@
+<script src="js/jquery-3.5.1.min.js"></script>
+<script src="https://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js"></script>
+<script>
+
+var clientId = "APP-I0WH9JVGII4DTR7I";
+//change to the key at https://orcid.org/oauth/jwks for the live service:
+var orcidCert = {"kty":"RSA","e":"AQAB","use":"sig","kid":"sandbox-orcid-org-3hpgosl3b6lapenh1ewsgdob3fawepoj","n":"pl-jp-kTAGf6BZUrWIYUJTvqqMVd4iAnoLS6vve-KNV0q8TxKvMre7oi9IulDcqTuJ1alHrZAIVlgrgFn88MKirZuTqHG6LCtEsr7qGD9XyVcz64oXrb9vx4FO9tLNQxvdnIWCIwyPAYWtPMHMSSD5oEVUtVL_5IaxfCJvU-FchdHiwfxvXMWmA-i3mcEEe9zggag2vUPPIqUwbPVUFNj2hE7UsZbasuIToEMFRZqSB6juc9zv6PEUueQ5hAJCEylTkzMwyBMibrt04TmtZk2w9DfKJR91555s2ZMstX4G_su1_FqQ6p9vgcuLQ6tCtrW77tta-Rw7McF_tyPmvnhQ"};
+//change to "https:\/\/orcid.org" for the live service
+var issuer = "https:\/\/sandbox.orcid.org";
+var pubKey = KEYUTIL.getKey(orcidCert);
+
+function getFragmentParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\#&]" + name + "=([^&#]*)"),
+        results = regex.exec(window.location.hash);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+function checkSig(idToken){
+  return KJUR.jws.JWS.verifyJWT(idToken, pubKey, {
+    alg: ['RS256'], iss: [issuer] , aud:clientId,gracePeriod: 15*60 //15 mins skew allowed
+  });
+}
+
+$(document).ready(function() {
+	var id_token = getFragmentParameterByName("id_token");
+	if (checkSig(id_token)){
+	  window.opener.onOrcidAuth(JSON.parse(KJUR.jws.JWS.parse(id_token).payloadPP));      
+	} else {
+	  window.opener.onOrcidAuthFail();     
+	}
+	window.close();
+});
+</script>
