@@ -22,7 +22,7 @@ function logout() {
     $("#no-login").show();
     $("#auth-button").show();
 
-    sessionStorage.clear();
+    localStorage.clear();
 }
 
 function getORCID(){
@@ -32,10 +32,10 @@ function getORCID(){
 function onOrcidAuth(token){
     console.log(token);
 
-    sessionStorage.setItem("name", token.given_name);
-    sessionStorage.setItem("family_name", token.family_name);
-    sessionStorage.setItem("sub", token.sub);
-    sessionStorage.setItem("exp", token.exp);
+    localStorage.setItem("name", token.given_name);
+    localStorage.setItem("family_name", token.family_name);
+    localStorage.setItem("sub", token.sub);
+    localStorage.setItem("exp", token.exp);
 
     login();
 
@@ -47,8 +47,8 @@ function onOrcidAuth(token){
 function login() {
     $("#no-login").hide();
 
-    $("#orcid-id").html(sessionStorage.getItem("sub"));
-    $("#given-name").html(sessionStorage.getItem("name"));
+    $("#orcid-id").html(localStorage.getItem("sub"));
+    $("#given-name").html(localStorage.getItem("name"));
     $("#auth-button").hide();
 
     $(".after-authenticated").show();
@@ -80,7 +80,7 @@ function parseToken(token) {
 }
 
 $(document).ready(function() {
-    if (sessionStorage.getItem("exp") > Date.now()/1000) {
+    if (localStorage.getItem("exp") > Date.now()/1000) {
 	login();
     }
 });
